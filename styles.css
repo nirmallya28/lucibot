@@ -1,3 +1,4 @@
+/* Base Styles */
 * {
     margin: 0;
     padding: 0;
@@ -201,8 +202,7 @@ button:hover {
     background-color: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     border-radius: 10px;
-    box-shadow: 0px 
-    10px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
     z-index: 1;
     flex-direction: column;
     overflow: hidden;
@@ -230,4 +230,76 @@ button:hover {
 
 .attachment-menu button:hover {
     background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Media Query for Smaller Screens */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        height: 100vh;
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: 30vh;
+        box-shadow: none;
+        flex-direction: row;
+    }
+
+    .conversations-list {
+        flex-grow: 1;
+        overflow-x: auto;
+        display: flex;
+        flex-direction: row;
+        padding: 10px;
+    }
+
+    .conversation-item {
+        margin-right: 10px;
+        margin-bottom: 0;
+        padding: 10px;
+        flex: 1;
+    }
+
+    .chat-area {
+        height: 70vh;
+        overflow: hidden;
+    }
+
+    .chat-box {
+        padding: 10px;
+    }
+
+    .input-area {
+        padding: 10px;
+        flex-direction: column;
+    }
+
+    input[type="text"] {
+        margin-bottom: 10px;
+        padding: 10px;
+        border-radius: 20px;
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        border-radius: 20px;
+    }
+
+    .attachment-menu {
+        bottom: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        height: 20vh;
+    }
+
+    .chat-area {
+        height: 80vh;
+    }
 }
