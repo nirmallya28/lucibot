@@ -8,24 +8,23 @@
 </head>
 <body>
     <div class="container">
-        <aside class="sidebar">
-            <div class="sidebar-header">
-                <h2>Conversations</h2>
-            </div>
+        <button class="sidebar-toggle-btn">&#9776;</button>
+        <div class="sidebar">
+            <div class="sidebar-header">Chatbot</div>
             <div class="conversations-list">
                 <div class="conversation-item active">
                     <span>Chat with Luci</span>
                 </div>
             </div>
             <div class="sidebar-footer">
-                <button class="new-conversation-btn">New Conversation</button>
+                <button class="new-conversation-btn">New Chat</button>
             </div>
-        </aside>
+        </div>
         
         <div class="chat-area">
-            <header class="chat-header">
+            <div class="chat-header">
                 <h1>Luci RailAssistant</h1>
-            </header>
+            </div>
             <div class="chat-box" id="chat-box">
                 <div class="message bot-message">
                     Hello! I'm Luci, your virtual assistant. How can I assist you today?
@@ -43,10 +42,16 @@
                     <input type="file" id="file-input" style="display: none;" onchange="handleFileUpload(event)">
                 </div>
                 <input type="text" id="user-input" placeholder="Type your message..." onkeypress="sendMessage(event)">
-                <button onclick="sendMessage()">Send</button>
+                <button id="send-button">Send</button>
             </div>
         </div>
     </div>
     <script src="script.js"></script>
+    <script>
+        document.querySelector('.sidebar-toggle-btn').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('active');
+        });
+    </script>
 </body>
 </html>
+
