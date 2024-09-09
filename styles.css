@@ -1,4 +1,3 @@
-/* Base Styles */
 * {
     margin: 0;
     padding: 0;
@@ -26,6 +25,19 @@ body {
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
     background: linear-gradient(145deg, #2a2a3b, #1e1e2f);
     backdrop-filter: blur(10px);
+}
+
+.sidebar-toggle-btn {
+    display: none;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: transparent;
+    color: white;
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+    z-index: 1000; /* Ensures the button is always on top */
 }
 
 .sidebar {
@@ -186,12 +198,9 @@ button:hover {
     color: #4a90e2;
     font-size: 24px;
     cursor: pointer;
-    padding: 0 10px;
-    transition: transform 0.3s ease;
-}
-
-.attachment-btn:hover {
-    transform: scale(1.1);
+    padding: 0;
+    margin-right: 10px;
+    outline: none;
 }
 
 .attachment-menu {
@@ -199,38 +208,57 @@ button:hover {
     position: absolute;
     bottom: 40px;
     left: 0;
-    background-color: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+    background-color: #2e2e4b;
     border-radius: 10px;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
-    z-index: 1;
-    flex-direction: column;
-    overflow: hidden;
-    transform: scale(0.95);
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    opacity: 0;
-}
-
-.attachment-menu.active {
-    display: flex;
-    transform: scale(1);
-    opacity: 1;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    padding: 10px;
 }
 
 .attachment-menu button {
-    padding: 15px;
+    display: block;
     background: none;
     border: none;
     color: white;
-    cursor: pointer;
+    padding: 10px;
     text-align: left;
     width: 100%;
-    transition: background-color 0.3s ease;
+    cursor: pointer;
 }
 
 .attachment-menu button:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
 }
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+    color: white;
+}
+
+.logo {
+    height: 40px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+/* Existing CSS */
+.attachment-menu.active {
+    display: block;
+}
+
+/* Add this CSS rule */
+.attachment-menu {
+    display: none; /* Ensure the menu is hidden by default */
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    background-color: #2e2e4b;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+}
+
+/* Existing CSS continues... */
+
 
 /* Media Query for Smaller Screens */
 @media (max-width: 768px) {
@@ -241,65 +269,28 @@ button:hover {
         border-radius: 0;
     }
 
+    /* Sidebar is hidden by default on mobile */
     .sidebar {
-        width: 100%;
-        height: 30vh;
-        box-shadow: none;
-        flex-direction: row;
+        position: fixed;
+        top: 0;
+        left: -250px; /* Hidden off-screen */
+        height: 100%;
+        width: 250px;
+        transition: left 0.3s ease;
+        z-index: 999; /* Sidebar should be above everything else when visible */
     }
 
-    .conversations-list {
-        flex-grow: 1;
-        overflow-x: auto;
-        display: flex;
-        flex-direction: row;
-        padding: 10px;
+    /* Sidebar visible when active */
+    .sidebar.active {
+        left: 0;
     }
 
-    .conversation-item {
-        margin-right: 10px;
-        margin-bottom: 0;
-        padding: 10px;
-        flex: 1;
+    .sidebar-toggle-btn {
+        display: block;
     }
 
     .chat-area {
-        height: 70vh;
-        overflow: hidden;
-    }
-
-    .chat-box {
-        padding: 10px;
-    }
-
-    .input-area {
-        padding: 10px;
-        flex-direction: column;
-    }
-
-    input[type="text"] {
-        margin-bottom: 10px;
-        padding: 10px;
-        border-radius: 20px;
-    }
-
-    button {
-        width: 100%;
-        padding: 10px;
-        border-radius: 20px;
-    }
-
-    .attachment-menu {
-        bottom: 50px;
-    }
-}
-
-@media (max-width: 480px) {
-    .sidebar {
-        height: 20vh;
-    }
-
-    .chat-area {
-        height: 80vh;
+        height: 100vh;
+        padding-top: 60px; /* To avoid overlapping the toggle button */
     }
 }
